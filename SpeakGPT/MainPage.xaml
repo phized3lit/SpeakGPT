@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SpeakGPT.MVVM.ViewModel"
+             xmlns:hp="clr-namespace:SpeakGPT.MVVM.Helper"
+             x:Class="SpeakGPT.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0" Grid.RowSpan="2">
+            <StackLayout Orientation="Vertical">
+                <Image
+                    Margin="0, 15, 0, 0"
+                    Source="dotnet_bot.png"
+                    HeightRequest="60"
+                    HorizontalOptions="Center"/>
+                <Label
+                    Margin="0, 0, 0, 0"
+                    Text="Welcome"
+                    FontSize="15"
+                    HorizontalOptions="Center"/>
+                <Border Margin="10" Padding="5" Stroke="White" StrokeThickness="1">
+                    <ListView x:Name="listView_conversation" ItemsSource="{Binding Conversation.ChatList}" HasUnevenRows="True" MaximumHeightRequest="400">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell IsEnabled="False">
+                                    <Border MaximumWidthRequest="300" StrokeThickness="0">
+                                        <StackLayout Orientation="Vertical" Margin="5">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="{Binding SenderType, Converter={hp:SenderToLayoutOptionsConverter}}">
+                                                <Image Source="{Binding ImageUrl}"
+                                                       Aspect="AspectFill"
+                                                       HeightRequest="15" />
+                                                <Label VerticalOptions="End" Margin="5,0,0,0"
+                                                       Text="{Binding DisplayName}" FontSize="10"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding Message}" FontSize="12" LineBreakMode="WordWrap"
+                                                   TextColor="{Binding Expired, Converter={hp:SenderToColorConverter}}"
+                                                   HorizontalOptions="{Binding SenderType, Converter={hp:SenderToLayoutOptionsConverter}}"
+                                                   HorizontalTextAlignment="{Binding SenderType, Converter={hp:SenderToLayoutOptionsConverter}}"/>
+                                        </StackLayout>
+                                    </Border>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Border>
+                <StackLayout Orientation="Horizontal" Margin="25, 0" BackgroundColor="LightYellow">
+                    <Editor Text="{Binding MyMessage}" FontSize="12" TextColor="Black" FontAttributes="Bold"
+                            HorizontalOptions="FillAndExpand" Margin="0" AutoSize="TextChanges" MaximumHeightRequest="120" />
+                    <Button Text="X" Command="{Binding ClearCommand}" HorizontalOptions="End" Margin="0" Padding="0" HeightRequest="30" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Text="{Binding SpeakButonText}" Command="{Binding SpeakCommand}"
+                            Padding="0" Margin="5" WidthRequest="70"/>
+                    <Button Text="Write" Command="{Binding WriteCommand}" CommandParameter="{Binding MyMessage}"
+                            Padding="0" Margin="5" WidthRequest="70"/>
+                    <Button Text="Reset" Command="{Binding ResetCommand}"
+                            Padding="0" Margin="5" WidthRequest="70"/>
+                    <Button Text="Stop" Command="{Binding StopCommand}"
+                            Padding="0" Margin="5" WidthRequest="70"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <Button Grid.Row="0" Text="Setting" Command="{Binding SettingPageCommand}" IsEnabled="{Binding SettingPageCommand.CanExecute}"
+                Padding="0" Margin="0, 15, 15, 0" WidthRequest="70" HorizontalOptions="End"/>
+    </Grid>
+</ContentPage>

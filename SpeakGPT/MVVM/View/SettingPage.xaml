@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:SpeakGPT.MVVM.Model"
+             xmlns:vm="clr-namespace:SpeakGPT.MVVM.ViewModel"
+             x:Class="SpeakGPT.MVVM.View.SettingPage"
+             Title="SettingPage">
+    <ContentPage.BindingContext>
+        <vm:SettingPageViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Border" x:Key="RequiredField">
+                <Setter Property="StrokeThickness" Value="1"/>
+                <Setter Property="Stroke" Value="Yellow"/>
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style TargetType="Border" x:Key="OptionalField">
+                <Setter Property="StrokeThickness" Value="1"/>
+                <Setter Property="Stroke" Value="White"/>
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="99"
+            Text="Customize the way AI talks to you."
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RequiredField}">
+            <HorizontalStackLayout>
+                <Label Text="RolePlay"/>
+                <CheckBox IsChecked="{Binding Settings.RolePlay}"/>
+            </HorizontalStackLayout>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource OptionalField}">
+            <VerticalStackLayout>
+                <Label Text="My Role"/>
+                <Editor Text="{Binding Settings.UserRole}"/>
+            </VerticalStackLayout>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource OptionalField}">
+            <VerticalStackLayout>
+                <Label Text="AI Role"/>
+                <Editor Text="{Binding Settings.AIRole}"/>
+            </VerticalStackLayout>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource OptionalField}">
+            <VerticalStackLayout>
+                <Label Text="Situation"/>
+                <Editor Text="{Binding Settings.Situation}"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource OptionalField}">
+            <VerticalStackLayout>
+                <Label Text="{Binding Settings.MaxTokens, StringFormat='MaxTokens = {0}'}"/>
+                <Slider Value="{Binding Settings.MaxTokens}" Minimum="10" Maximum="120" ValueChanged="MaxTokens_Slider_ValueChanged"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource OptionalField}">
+            <VerticalStackLayout>
+                <Label Text="{Binding Settings.Temperature, StringFormat='Temperature = {0}'}"/>
+                <Slider Value="{Binding Settings.Temperature}" Minimum="0" Maximum="2" ValueChanged="Temperature_Slider_ValueChanged"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource OptionalField}">
+            <VerticalStackLayout>
+                <Label Text="{Binding Settings.Memory, StringFormat='Memory = {0}'}"/>
+                <Slider Value="{Binding Settings.Memory}" Minimum="1" Maximum="10"/>
+            </VerticalStackLayout>
+        </Border>
+
+
+    </Grid>
+</ContentPage>

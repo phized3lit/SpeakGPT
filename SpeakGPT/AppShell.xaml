@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SpeakGPT.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SpeakGPT"
+    xmlns:v="clr-namespace:SpeakGPT.MVVM.View"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="SpeakGPT"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Setting"
+        ContentTemplate="{DataTemplate v:SettingPage}"
+        Route="SettingPage" />
+
+</Shell>
