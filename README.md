@@ -6,7 +6,7 @@
 
 You can enter the api_key in the path below.
 
-    Solution_Root/Private/apiKey.json
+    SOLUTION_ROOT/Private/apiKey.json
     
 and its contents
 
