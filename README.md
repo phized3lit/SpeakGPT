@@ -15,16 +15,16 @@ and its contents
   "OpenAI_ApiKey": "Your OpenAI API Key",
   "Deepgram_ApiKey": "Your Deepgram API Key",
   "Google_ApiKey":{
-      "type": "",
-      "project_id": "",
-      "private_key_id": "",
-      "private_key": "",
-      "client_email": "",
-      "client_id": "",
-      "auth_uri": "",
-      "token_uri": "",
-      "auth_provider_x509_cert_url": "",
-      "client_x509_cert_url": ""
+      "type": "YouAuthInfo",
+      "project_id": "YouAuthInfo",
+      "private_key_id": "YouAuthInfo",
+      "private_key": "YouAuthInfo",
+      "client_email": "YouAuthInfo",
+      "client_id": "YouAuthInfo",
+      "auth_uri": "YouAuthInfo",
+      "token_uri": "YouAuthInfo",
+      "auth_provider_x509_cert_url": "YouAuthInfo",
+      "client_x509_cert_url": "YouAuthInfo"
   }
 }
 ```
