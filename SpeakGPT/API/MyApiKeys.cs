@@ -5,7 +5,7 @@ namespace SpeakGPT.API
 {
     internal static class MyApiKeys
     {
-        public class GoogleApiKey
+        internal class GoogleApiKey
         {
             public string type;
             public string project_id;
@@ -23,13 +23,13 @@ namespace SpeakGPT.API
                 return JsonConvert.SerializeObject(this);
             }
         }
-        public class ApiKeys
+        internal class ApiKeys
         {
             public string OpenAI_ApiKey;
             public string Deepgram_ApiKey;
             public GoogleApiKey Google_ApiKey;
         }
-        public static ApiKeys Keys { get; set; }
+        internal static ApiKeys Keys { get; set; }
         static MyApiKeys()
         {
             var assembly = Assembly.GetExecutingAssembly();
